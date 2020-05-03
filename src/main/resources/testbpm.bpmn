@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1xi1cri" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.3">
+  <bpmn:process id="rest_process" name="rest process" isExecutable="true" camunda:versionTag="1.0">
+    <bpmn:serviceTask id="Activity_023h36c" name="REST Service">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">http://camunda.org</camunda:inputParameter>
+            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:inputParameter name="header">
+              <camunda:map>
+                <camunda:entry key="Accept">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="statusCode" />
+            <camunda:outputParameter name="response" />
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rpbsoi</bpmn:incoming>
+      <bpmn:outgoing>Flow_0chlwkl</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_06npnhd" name="Print Task 1" camunda:class="com.example.workflow.tasks.PrintTask">
+      <bpmn:incoming>Flow_0chlwkl</bpmn:incoming>
+      <bpmn:outgoing>Flow_1k4z5s4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0kpffik">
+      <bpmn:incoming>Flow_1k4z5s4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1k4z5s4" sourceRef="Activity_06npnhd" targetRef="Event_0kpffik" />
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0rpbsoi</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0rpbsoi" sourceRef="StartEvent_1" targetRef="Activity_023h36c" />
+    <bpmn:sequenceFlow id="Flow_0chlwkl" sourceRef="Activity_023h36c" targetRef="Activity_06npnhd" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="rest_process">
+      <bpmndi:BPMNEdge id="Flow_0rpbsoi_di" bpmnElement="Flow_0rpbsoi">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k4z5s4_di" bpmnElement="Flow_1k4z5s4">
+        <di:waypoint x="550" y="117" />
+        <di:waypoint x="632" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0chlwkl_di" bpmnElement="Flow_0chlwkl">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="450" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1po6uqv_di" bpmnElement="Activity_023h36c">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06npnhd_di" bpmnElement="Activity_06npnhd">
+        <dc:Bounds x="450" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0kpffik_di" bpmnElement="Event_0kpffik">
+        <dc:Bounds x="632" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
