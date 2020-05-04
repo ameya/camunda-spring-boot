@@ -5,15 +5,15 @@
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">http://camunda.org</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://jsonplaceholder.typicode.com/todos/1</camunda:inputParameter>
             <camunda:inputParameter name="method">GET</camunda:inputParameter>
             <camunda:inputParameter name="header">
               <camunda:map>
                 <camunda:entry key="Accept">application/json</camunda:entry>
               </camunda:map>
             </camunda:inputParameter>
-            <camunda:outputParameter name="statusCode" />
-            <camunda:outputParameter name="response" />
+            <camunda:outputParameter name="statusCode">${statusCode}</camunda:outputParameter>
+            <camunda:outputParameter name="response">${response}</camunda:outputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
